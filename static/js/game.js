@@ -22,20 +22,19 @@ let moveCount = 0;
 let myturn = true;
 
 let elementArray = document.getElementsByClassName('square');
-for (var i = 0; i < elementArray.length; i++){
-    elementArray[i].addEventListener("click", event=>{
-        const index = event.path[0].getAttribute('data-index');
-        if(gameBoard[index] == -1){
-            if(!myturn){
-                alert("Wait for other to place the move")
-            }
-            else{
+for (var i = 0; i < elementArray.length; i++) {
+    elementArray[i].addEventListener("click", event => {
+        const index = event.target.getAttribute('data-index'); // or event.currentTarget.getAttribute('data-index');
+        if (gameBoard[index] == -1) {
+            if (!myturn) {
+                alert("Wait for other to place the move");
+            } else {
                 myturn = false;
                 document.getElementById("alert_move").style.display = 'none'; // Hide          
                 make_move(index, char_choice);
             }
         }
-    })
+    });
 }
 
 function make_move(index, player){
